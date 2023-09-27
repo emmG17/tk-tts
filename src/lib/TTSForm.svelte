@@ -1,25 +1,36 @@
 <script>
   import voices from '../tiktok/data'; 
   import { tts } from '../tiktok/tts.js';
-
+  import Toastify from 'toastify-js';
   const availableVoices = voices
   let selectedVoice = voices[0].value
   let ssid = ''
   let text = ''
 
   async function textToSpeech(){
-    const { data, filename } = await tts(selectedVoice, text, ssid);
-    const url = window.URL.createObjectURL(data);
-    const a = document.createElement('a');
-    a.style.display = 'none';
-    a.href = url;
-    a.download = filename;
+    try {
+      const { data, filename } = await tts(selectedVoice, text, ssid);
+      const url = window.URL.createObjectURL(data);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = filename;
 
-    document.body.appendChild(a);
-    a.click();
+      document.body.appendChild(a);
+      a.click();
 
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch(err) {
+       Toastify({
+        text: `Upsi dupsi!: ${err}`,
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "left", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+      }).showToast();
+    }
   }
 </script>
 
