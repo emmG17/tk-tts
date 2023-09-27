@@ -4,23 +4,33 @@
   import Toastify from 'toastify-js';
   const availableVoices = voices
   let selectedVoice = voices[0].value
-  let ssid = ''
+  let ssid = localStorage.getItem('ssid') ?? ''
   let text = ''
+ 
+  /**
+   * 
+   * @param {Blob} blob
+   * @param {string} filename
+   */
+  function downloadBlob(blob, filename){
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = filename;
+
+    document.body.appendChild(a);
+    a.click();
+
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
 
   async function textToSpeech(){
     try {
       const { data, filename } = await tts(selectedVoice, text, ssid);
-      const url = window.URL.createObjectURL(data);
-      const a = document.createElement('a');
-      a.style.display = 'none';
-      a.href = url;
-      a.download = filename;
-
-      document.body.appendChild(a);
-      a.click();
-
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      downloadBlob(data, filename);
+      localStorage.setItem('ssid', ssid)
     } catch(err) {
        Toastify({
         text: `Upsi dupsi!: ${err}`,
@@ -30,6 +40,7 @@
         position: "left", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
       }).showToast();
+      localStorage.removeItem('ssid');
     }
   }
 </script>
