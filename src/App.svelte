@@ -1,12 +1,13 @@
 <script>
   import TTSForm from './lib/TTSForm.svelte'
-  const name = 'Emmanuel Gonzalez'
 </script>
 
-<main>
-  <TTSForm hello={name}/>
+<main class="d-flex align-items-center">
+  <TTSForm/>
 </main>
 
 <style>
-
+  main {
+    height: 100vh; 
+  }
 </style>
