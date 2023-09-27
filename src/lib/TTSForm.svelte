@@ -6,9 +6,20 @@
   let selectedVoice = voices[0].value
   let ssid = ''
   let text = ''
+
   async function textToSpeech(){
-    const res = await tts(selectedVoice, text, ssid);
-    console.log(res)
+    const { data, filename } = await tts(selectedVoice, text, ssid);
+    const url = window.URL.createObjectURL(data);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = filename;
+
+    document.body.appendChild(a);
+    a.click();
+
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 </script>
 
