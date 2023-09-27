@@ -1,4 +1,5 @@
-import './app.css'
+import './scss/styles.scss'
+import * as bootstrap from 'bootstrap';
 import App from './App.svelte'
 
 const app = new App({
