@@ -4,8 +4,24 @@ const voices = [
     value: "es_mx_002"
   },
   {
-    name: "Español - Hombre",
-    value: "es_002"
+    name: "Español MX - Hombre 2",
+    value: "es_male_m3"
+  },
+  {
+    name: "Español MX - Mujer 1",
+    value: "es_female_f6"
+  },
+  {
+    name: "Español MX - Mujer 2",
+    value: "es_female_fp1"
+  },
+  {
+    name: "Español MX - Mamá Lucha 🛒",
+    value: "es_mx_female_supermom"
+  },
+  {
+    name: "Español MX - Optimus Prime 🤖🚛",
+    value: "es_mx_male_transformer"
   },
   {
     name: "Portugués BR - Mujer 1",
