@@ -54,10 +54,10 @@
 
 <div class="flex flex-col items-center">
   <div class="flex flex-col items-center">
-    <img class="w-36" src={logo}/>
-    <h1 class="mb-12 text-center brand-title silkscreen-regular text-primary-700 dark:text-slate-200">Text to speech</h1>
+    <img class="w-20 md:w-36" src={logo}/>
+    <h1 class="mb-12 text-center text-3xl silkscreen-regular text-primary-700 dark:text-slate-200">Text to speech</h1>
   </div>
-  <form class="w-2/3" on:submit|preventDefault={textToSpeech}>
+  <form class="lg:w-2/3" on:submit|preventDefault={textToSpeech}>
     <div class="mb-3">
       <Label class="text-lg">
         Texto
