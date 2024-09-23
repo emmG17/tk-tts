@@ -1,7 +1,8 @@
 <script>
   import "./app.css";
-  import { DarkMode } from "flowbite-svelte";
+  import { DarkMode, Banner } from "flowbite-svelte";
   import TTSForm from "./lib/TTSForm.svelte";
+  import BottomBanner from "./lib/BottomBanner.svelte";
 </script>
 
 <main class="flex">
@@ -13,4 +14,5 @@
   <div>
     <TTSForm />
   </div>
+  <BottomBanner/>
 </main>
