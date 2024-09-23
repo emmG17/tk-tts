@@ -3,7 +3,9 @@
   import { tts } from "../tiktok/tts.js";
   import logo from "../assets/logo-color.svg";
   import Toastify from "toastify-js";
-  import { Textarea, Label, Select, Input, Button, Spinner } from "flowbite-svelte";
+  import { Textarea, Label, Select, Input, Button, Spinner, Popover } from "flowbite-svelte";
+  import { QuestionCircleOutline } from "flowbite-svelte-icons";
+
   const availableVoices = voices;
   let selectedVoice = voices[0].value;
   let ssid = localStorage.getItem("ssid") ?? "";
@@ -64,7 +66,24 @@
     </div>
     <div class="mb-4">
       <Label class="text-lg">
-        ID de sesión <
+        <p class="flex gap-x-1 justify-center items-center">
+        ID de sesión
+        <QuestionCircleOutline id="show-hint"/>
+        <Popover class="w-64 text-sm font-light " title="¿Dónde está esto?" triggeredBy="#show-hint">
+          <div>
+          Está dentro de las cookies del sitio web de TikTok.
+          Para obtenerlo:
+          <ol class="list-decimal text-left pl-4">
+            <li>Ve al sitio web de TikTok</li>
+            <li>Inicia sesión</li>
+            <li>Haz clic derecho y selecciona 'Inspeccionar'</li>
+            <li>Busca el menú 'Aplicación'</li>
+            <li>Selecciona Cookies y busca la entrada 'sessionid'</li>
+            <li>Copia el valor de 'sessionid' y pégalo en este campo</li>
+          </ol>
+          </div>
+        </Popover>
+        </p>
         <Input id="ssid" bind:value={ssid} type="password" name="ssid" required />
       </Label>
     </div>
