@@ -1,5 +1,3 @@
-import './scss/styles.scss'
-import * as bootstrap from 'bootstrap';
 import "toastify-js/src/toastify.css";
 import App from './App.svelte'
 
