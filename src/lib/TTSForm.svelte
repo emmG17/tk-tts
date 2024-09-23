@@ -2,6 +2,7 @@
   import voices from "../tiktok/data";
   import { tts } from "../tiktok/tts.js";
   import Toastify from "toastify-js";
+  import { Textarea, Label, Select, Input, Button } from "flowbite-svelte";
   const availableVoices = voices;
   let selectedVoice = voices[0].value;
   let ssid = localStorage.getItem("ssid") ?? "";
@@ -35,7 +36,7 @@
       localStorage.setItem("ssid", ssid);
       loading = false;
     } catch (err) {
-      Toastify({
+      const toast = Toastify({
         text: `Upsi dupsi!: ${err}`,
         duration: 3000,
         close: true,
@@ -53,44 +54,23 @@
   <form on:submit|preventDefault={textToSpeech}>
     <div class="mb-3">
       <label for="text-input" class="form-label">Texto</label>
-      <textarea
-        id="text-input"
-        bind:value={text}
-        class="form-control"
-        name="text-input"
-        required
-      />
+      <Textarea id="text-input" bind:value={text} name="text-input" required />
     </div>
     <div class="mb-4">
       <label for="ssid" class="form-label">ID de sesion</label>
-      <input
-        id="ssid"
-        bind:value={ssid}
-        class="form-control"
-        type="text"
-        name="ssid"
-        required
-      />
+      <Input id="ssid" bind:value={ssid} type="text" name="ssid" required />
     </div>
     <div class="input-group mb-4">
-      <label for="available-voices" class="input-group-text">Voz</label>
-      <select
-        name="available-voices"
-        bind:value={selectedVoice}
-        id="available-voices"
-        class="form-select"
-        required
-      >
-        {#each availableVoices as voice}
-          <option value={voice.value}>{voice.name}</option>
-        {/each}
-      </select>
+      <Label>
+        Voz
+        <Select items={availableVoices} bind:value={selectedVoice} />
+      </Label>
     </div>
-    <button type="submit" class="btn btn-primary">
+    <Button>
       Convertir <span class={loading ? "d-none" : ""}>💬</span>
       <div
         class={loading ? "spinner-grow spinner-grow-sm" : "d-none"}
-      ></div></button
+      ></div></Button
     >
   </form>
 </div>
