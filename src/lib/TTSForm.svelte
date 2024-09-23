@@ -1,6 +1,7 @@
 <script>
   import voices from "../tiktok/data";
   import { tts } from "../tiktok/tts.js";
+  import logo from "../assets/logo-color.svg";
   import Toastify from "toastify-js";
   import { Textarea, Label, Select, Input, Button, Spinner } from "flowbite-svelte";
   const availableVoices = voices;
@@ -50,7 +51,10 @@
 </script>
 
 <div class="flex flex-col items-center">
-  <h1 class="mb-12 text-center brand-title silkscreen-regular text-primary-700 dark:text-slate-200">Text to speech</h1>
+  <div class="flex flex-col items-center">
+    <img class="w-36" src={logo}/>
+    <h1 class="mb-12 text-center brand-title silkscreen-regular text-primary-700 dark:text-slate-200">Text to speech</h1>
+  </div>
   <form class="w-2/3" on:submit|preventDefault={textToSpeech}>
     <div class="mb-3">
       <Label class="text-lg">
@@ -60,7 +64,7 @@
     </div>
     <div class="mb-4">
       <Label class="text-lg">
-        ID de sesión
+        ID de sesión <
         <Input id="ssid" bind:value={ssid} type="password" name="ssid" required />
       </Label>
     </div>

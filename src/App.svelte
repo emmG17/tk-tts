@@ -10,13 +10,7 @@
       class="bg-primary-700 hover:bg-primary-300 dark:bg-slate-950 text-white"
     />
   </div>
-  <div class="mt-36">
+  <div>
     <TTSForm />
   </div>
 </main>
-
-<style>
-  main {
-    height: 100vh;
-  }
-</style>
