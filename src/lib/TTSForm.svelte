@@ -2,7 +2,7 @@
   import voices from "../tiktok/data";
   import { tts } from "../tiktok/tts.js";
   import Toastify from "toastify-js";
-  import { Textarea, Label, Select, Input, Button } from "flowbite-svelte";
+  import { Textarea, Label, Select, Input, Button, Spinner } from "flowbite-svelte";
   const availableVoices = voices;
   let selectedVoice = voices[0].value;
   let ssid = localStorage.getItem("ssid") ?? "";
@@ -49,28 +49,34 @@
   }
 </script>
 
-<div class="container col-6 col-lg-4">
-  <h1 class="mb-5 text-center fs-2">Text to speech 🤖</h1>
-  <form on:submit|preventDefault={textToSpeech}>
+<div class="flex flex-col items-center">
+  <h1 class="mb-12 text-center brand-title silkscreen-regular text-primary-700 dark:text-slate-200">Text to speech</h1>
+  <form class="w-2/3" on:submit|preventDefault={textToSpeech}>
     <div class="mb-3">
-      <label for="text-input" class="form-label">Texto</label>
-      <Textarea id="text-input" bind:value={text} name="text-input" required />
+      <Label class="text-lg">
+        Texto
+        <Textarea id="text-input" bind:value={text} name="text-input" required />
+      </Label>
     </div>
     <div class="mb-4">
-      <label for="ssid" class="form-label">ID de sesion</label>
-      <Input id="ssid" bind:value={ssid} type="text" name="ssid" required />
+      <Label class="text-lg">
+        ID de sesión
+        <Input id="ssid" bind:value={ssid} type="password" name="ssid" required />
+      </Label>
     </div>
-    <div class="input-group mb-4">
-      <Label>
+    <div class="input-group mb-8">
+      <Label class="text-lg">
         Voz
         <Select items={availableVoices} bind:value={selectedVoice} />
       </Label>
     </div>
-    <Button>
-      Convertir <span class={loading ? "d-none" : ""}>💬</span>
-      <div
-        class={loading ? "spinner-grow spinner-grow-sm" : "d-none"}
-      ></div></Button
+    <Button type="submit" class="w-36 h-12">
+      {#if loading}
+        <Spinner size="6" color="white"/>
+      {:else}
+        <span class="text-lg">Convertir</span>
+      {/if}
+      </Button
     >
   </form>
 </div>

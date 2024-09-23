@@ -4,13 +4,15 @@
   import TTSForm from "./lib/TTSForm.svelte";
 </script>
 
-<main class="d-flex align-items-center">
-  <div class="fixed right-16">
+<main class="flex">
+  <div class="fixed right-16 top-16">
     <DarkMode
-      class="bg-primary-500 hover:bg-primary-300 dark:bg-slate-950 text-white"
+      class="bg-primary-700 hover:bg-primary-300 dark:bg-slate-950 text-white"
     />
   </div>
-  <TTSForm />
+  <div class="mt-36">
+    <TTSForm />
+  </div>
 </main>
 
 <style>
